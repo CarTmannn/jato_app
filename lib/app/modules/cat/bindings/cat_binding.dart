@@ -1,0 +1,12 @@
+import 'package:get/get.dart';
+
+import '../controllers/cat_controller.dart';
+
+class CatBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<CatController>(
+      () => CatController(),
+    );
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1057068676036",
+    "project_id": "jato-f7915",
+    "storage_bucket": "jato-f7915.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057068676036:android:f6955dc9e640256b92ea91",
+        "android_client_info": {
+          "package_name": "com.jato.jato"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6wEPwIcMxZeKOzQVuhjz790FPuips6pM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
