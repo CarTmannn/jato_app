@@ -267,14 +267,15 @@ class Card extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(70),
               child: Image.asset(
-                "assets/image/patt.jpg",
+                "assets/image/pprofile.png",
                 fit: BoxFit.cover,
               ),
             ),
             decoration: BoxDecoration(
-                border: Border.all(color: Color(0XFFFFA800), width: 2),
-                borderRadius: BorderRadius.circular(70),
-                color: Colors.white),
+              border: Border.all(color: Color(0XFFFFA800), width: 2),
+              borderRadius: BorderRadius.circular(70),
+              color: Color(0XFFcccccc),
+            ),
           ),
         ],
       ),

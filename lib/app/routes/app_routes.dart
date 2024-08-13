@@ -20,6 +20,7 @@ abstract class Routes {
   static const HOME_BUILDER = _Paths.HOME_BUILDER;
   static const USER_PROGRESS_PAGE = _Paths.USER_PROGRESS_PAGE;
   static const ORDER_BUILDER = _Paths.ORDER_BUILDER;
+  static const ORDER_DETAIL = _Paths.ORDER_DETAIL;
 }
 
 abstract class _Paths {
@@ -41,4 +42,5 @@ abstract class _Paths {
   static const HOME_BUILDER = '/home-builder';
   static const USER_PROGRESS_PAGE = '/user-progress-page';
   static const ORDER_BUILDER = '/order-builder';
+  static const ORDER_DETAIL = '/order-detail';
 }

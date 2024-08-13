@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
+import 'package:jato/app/routes/app_pages.dart';
 
 class RegisterController extends GetxController {
   final selectedGender = "".obs;
@@ -16,6 +20,20 @@ class RegisterController extends GetxController {
   final isUser = true.obs;
   final isObsecureConfirm = true.obs;
   final isObsecurePassword = true.obs;
+  final isEmailRegistered = false.obs;
+  final isusernameRegistered = false.obs;
+
+  Future<void> checkEmail(String email, String username) async {
+    final response = await http.post(
+        Uri.parse("https://seahorse-app-jep59.ondigitalocean.app/checkEmail"),
+        body: jsonEncode({"email": email, "username": username}));
+
+    if (response.statusCode == 200) {
+      final responseData = jsonDecode(response.body);
+      isEmailRegistered.value = responseData["email"];
+      isusernameRegistered.value = responseData["username"];
+    }
+  }
 
   void saveRegisterData(
       String fullName,

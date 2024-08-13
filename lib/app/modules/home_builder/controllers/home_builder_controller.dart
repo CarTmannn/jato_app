@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class HomeBuilderController extends GetxController {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
@@ -26,11 +27,18 @@ class HomeBuilderController extends GetxController {
     });
   }
 
-  Future<void> acceptOrder(
-      String builderName, String builderNumber, String doc) async {
-    firebaseFirestore
-        .collection("order")
-        .doc(doc)
-        .update({"builderName": builderName, "builderNumber": builderNumber});
+  Future<void> acceptOrder(String builderName, String builderNumber,
+      String email, String doc) async {
+    firebaseFirestore.collection("order").doc(doc).update({
+      "builderName": builderName,
+      "builderNumber": builderNumber,
+      "builderEmail": email
+    });
+  }
+
+  String convertIdr(int number) {
+    final formatCurrency =
+        NumberFormat.currency(locale: "id_ID", symbol: "", decimalDigits: 0);
+    return formatCurrency.format(number);
   }
 }

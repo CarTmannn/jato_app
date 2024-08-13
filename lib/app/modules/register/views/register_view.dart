@@ -184,9 +184,39 @@ class UserRegisterView extends StatelessWidget {
               SizedBox(
                 height: 5,
               ),
-              InputText(
-                errorText: "User Name",
+              TextFormField(
+                onChanged: (value) {
+                  registerController.isusernameRegistered.value = false;
+                },
+                textInputAction: TextInputAction.next,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter your username";
+                  }
+                  if (registerController.isusernameRegistered.value == true) {
+                    return "This username is already registered";
+                  }
+                  return null;
+                },
                 controller: userName,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Color(0XFFececec),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Color(0XFFececec), width: 2),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Color(0XFFececec), width: 2),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Color(0XFFececec), width: 2),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 20,
@@ -204,9 +234,39 @@ class UserRegisterView extends StatelessWidget {
               SizedBox(
                 height: 5,
               ),
-              InputText(
-                errorText: "Email",
+              TextFormField(
+                onChanged: (value) {
+                  registerController.isEmailRegistered.value = false;
+                },
+                textInputAction: TextInputAction.next,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter your email";
+                  }
+                  if (registerController.isEmailRegistered.value == true) {
+                    return "This email is already registered";
+                  }
+                  return null;
+                },
                 controller: email,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Color(0XFFececec),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Color(0XFFececec), width: 2),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Color(0XFFececec), width: 2),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Color(0XFFececec), width: 2),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 20,
@@ -575,28 +635,30 @@ class UserRegisterView extends StatelessWidget {
                 onTap: () async {
                   if (_formKey.currentState!.validate()) {
                     try {
-                      registerController.saveRegisterData(
-                        fullName.text,
-                        userName.text,
-                        email.text,
-                        confirmPassword.text,
-                        noHp.text,
-                        job.text,
-                        tempatLahir.text,
-                        registerController.formattedDate,
-                        nik.text,
-                      );
-                      print(registerController.tempFullName.value);
-                      print(registerController.tempuserName.value);
-                      print(registerController.tempEmail.value);
-                      print(registerController.tempTempatLahir.value);
-                      print(registerController.tempTanggalLahir.value);
-                      print(registerController.tempNoHp.value);
-                      print(registerController.tempNIK.value);
-                      print(registerController.selectedGender.value);
-                      print(registerController.isUser.value);
-                      Get.toNamed(Routes.FILL_ADDRESS);
-                      await fillAddressController.fetchprovinces();
+                      await registerController.checkEmail(
+                          email.text, userName.text);
+
+                      if (registerController.isEmailRegistered.value == false &&
+                          registerController.isusernameRegistered.value ==
+                              false) {
+                        registerController.saveRegisterData(
+                          fullName.text,
+                          userName.text,
+                          email.text,
+                          confirmPassword.text,
+                          noHp.text,
+                          job.text,
+                          tempatLahir.text,
+                          registerController.formattedDate,
+                          nik.text,
+                        );
+                        Get.toNamed(Routes.FILL_ADDRESS);
+                        await fillAddressController.fetchprovinces();
+                      } else {
+                        print("Email already registered.");
+                      }
+                      print(
+                          "nilai email = ${registerController.isEmailRegistered.value}");
                     } catch (e) {
                       print("Error during form submission: $e");
                     }
@@ -640,24 +702,32 @@ class UserRegisterView extends StatelessWidget {
 
   Future<void> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: registerController.selectedDate.value,
-        firstDate: DateTime(1950),
-        lastDate: DateTime(20100),
-        builder: (BuildContext context, Widget? child) {
-          return Theme(
-            data: ThemeData.dark().copyWith(
-              primaryColor: Colors.white,
-              buttonTheme: ButtonThemeData(
-                textTheme: ButtonTextTheme.primary,
-              ),
-              dialogBackgroundColor: Colors.amber,
+      context: context,
+      initialDate: registerController.selectedDate.value,
+      firstDate: DateTime(1950),
+      lastDate: DateTime(2100),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor: Colors.amber,
+            colorScheme: ColorScheme.light(primary: Colors.amber),
+            buttonTheme: ButtonThemeData(
+              textTheme: ButtonTextTheme.primary,
             ),
-            child: child!,
-          );
-        });
-    if (picked != null && picked != registerController.selectedDate.value)
+            dialogBackgroundColor: Colors.white,
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(),
+            ),
+            dividerColor: Colors.amberAccent,
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null && picked != registerController.selectedDate.value) {
       registerController.updateSelectedDate(picked);
+    }
   }
 }
 

@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class OrderBuilderController extends GetxController {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  ProfileController profileController = ProfileController();
+  ProfileController profileController = Get.put(ProfileController());
   var orders = <Map<String, dynamic>>[].obs;
 
   Future<String> getNamaLengkapFromPrefs() async {
@@ -13,10 +13,15 @@ class OrderBuilderController extends GetxController {
     return prefs.getString('nama_lengkap') ?? '';
   }
 
-  Future<void> fetchProgressOrders(String name) async {
+  Future<String> getEmailFromPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('nama_lengkap') ?? '';
+  }
+
+  Future<void> fetchProgressOrders(String email) async {
     firebaseFirestore
         .collection('order')
-        .where("builderName", isEqualTo: name)
+        .where("builderName", isEqualTo: email)
         .where("builderName", isNotEqualTo: "")
         .snapshots()
         .listen((snapshot) {
@@ -32,9 +37,8 @@ class OrderBuilderController extends GetxController {
   void onInit() {
     super.onInit();
     print("OrderController initialized");
-    getNamaLengkapFromPrefs().then((namaLengkap) {
-      print("User name from SharedPreferences: $namaLengkap");
-      fetchProgressOrders(namaLengkap);
+    getEmailFromPrefs().then((email) {
+      fetchProgressOrders(email);
     });
   }
 

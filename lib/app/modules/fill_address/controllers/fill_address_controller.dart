@@ -44,28 +44,28 @@ class FillAddressController extends GetxController {
       String kecamatan,
       String kelurahan,
       String role) async {
-    var response =
-        await http.post(Uri.parse("http://192.168.1.8:8080/register"),
-            body: jsonEncode({
-              "nama_lengkap": fullname,
-              "username": username,
-              "email": email,
-              "password": password,
-              "tempat_lahir": tempat_lahir,
-              "tanggal_lahir": tanggal_lahir,
-              "jenis_kelamin": jenis_kelamin,
-              "no_handphone": no_handphone,
-              "nomor_induk_kependudukan": nik,
-              "pekerjaan": pekerjaan,
-              "alamat": alamat,
-              "rt": rt,
-              "rw": rw,
-              "provinsi": provinsi,
-              "kota_kabupaten": kota,
-              "kecamatan": kecamatan,
-              "kelurahan_desa": kelurahan,
-              "role": role
-            }));
+    var response = await http.post(
+        Uri.parse("https://seahorse-app-jep59.ondigitalocean.app/register"),
+        body: jsonEncode({
+          "nama_lengkap": fullname,
+          "username": username,
+          "email": email,
+          "password": password,
+          "tempat_lahir": tempat_lahir,
+          "tanggal_lahir": tanggal_lahir,
+          "jenis_kelamin": jenis_kelamin,
+          "no_handphone": no_handphone,
+          "nomor_induk_kependudukan": nik,
+          "pekerjaan": pekerjaan,
+          "alamat": alamat,
+          "rt": rt,
+          "rw": rw,
+          "provinsi": provinsi,
+          "kota_kabupaten": kota,
+          "kecamatan": kecamatan,
+          "kelurahan_desa": kelurahan,
+          "role": role
+        }));
     if (response.statusCode == 200) {
       Get.offAllNamed(Routes.LOGIN);
       Get.snackbar("Success", "Successfully registrated, please login",

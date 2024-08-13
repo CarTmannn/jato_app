@@ -285,7 +285,9 @@ class OfferBox extends StatelessWidget {
                             color: Color(0XFFf8f4f4),
                             child: Center(
                                 child: Text(
-                              order["minNumber"].toString(),
+                              homeBuilderController
+                                  .convertIdr(order["minNumber"])
+                                  .toString(),
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w400,
@@ -310,7 +312,9 @@ class OfferBox extends StatelessWidget {
                             height: 40,
                             child: Center(
                                 child: Text(
-                              order["maxNumber"].toString(),
+                              homeBuilderController
+                                  .convertIdr(order["maxNumber"])
+                                  .toString(),
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w400,
@@ -406,6 +410,7 @@ class OfferBox extends StatelessWidget {
                           homeBuilderController.acceptOrder(
                               profileController.user.value.namaLengkap ?? "",
                               profileController.user.value.noHandphone ?? "",
+                              profileController.user.value.email ?? "",
                               documentId);
                         },
                         child: Padding(

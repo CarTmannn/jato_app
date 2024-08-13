@@ -9,10 +9,10 @@ import '../controllers/order_builder_controller.dart';
 
 class OrderBuilderView extends GetView<OrderBuilderController> {
   OrderBuilderView({Key? key}) : super(key: key);
-  ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
+    ProfileController profileController = Get.put(ProfileController());
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -200,7 +200,7 @@ class BuilderProgressBox extends StatelessWidget {
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14),
-                            )
+                            ),
                           ],
                         ),
                         Row(
@@ -216,15 +216,15 @@ class BuilderProgressBox extends StatelessWidget {
                               width: 10,
                             ),
                             Text(
-                              "0",
+                              order["progressPercentage"].toString(),
                               style: TextStyle(
-                                  color: Color(0XFFCE0000),
+                                  color: Colors.black,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15),
                             ),
                             Icon(
                               Icons.percent,
-                              color: Color(0XFFCE0000),
+                              color: Colors.black,
                               size: 15,
                             )
                           ],

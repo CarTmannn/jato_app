@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:get/get.dart';
+import 'package:jato/app/modules/home_builder/controllers/home_builder_controller.dart';
 import 'package:jato/app/modules/progress_page/controllers/progress_page_controller.dart';
 import 'package:jato/app/modules/progress_page/views/progress_page_view.dart';
 import 'package:jato/app/modules/register/controllers/register_controller.dart';
@@ -12,6 +13,8 @@ class UserProgressPageView extends GetView<UserProgressPageController> {
   UserProgressPageView({Key? key}) : super(key: key);
   final ProgressPageController progressPageController =
       Get.put(ProgressPageController());
+  HomeBuilderController homeBuilderController =
+      Get.put(HomeBuilderController());
   final order = Get.arguments;
 
   @override
@@ -100,7 +103,58 @@ class UserProgressPageView extends GetView<UserProgressPageController> {
                       color: Colors.grey.withOpacity(0.5),
                       offset: Offset(0, 3))
                 ]),
-                child: ProgressBar(),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 14),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Progress",
+                              style: TextStyle(
+                                  color: Color(0XFFfcb01d),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                order["progressPercentage"].toString(),
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ),
+                              Icon(
+                                Icons.percent,
+                                size: 17,
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: order["progressDate"].length,
+                      itemBuilder: (context, index) => ProgressBar(
+                          dateProgress: order["progressDate"][index],
+                          descProgress: order["progressDesc"][index],
+                          percentageProgress: order["progressPercentage"]),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    )
+                  ],
+                ),
               ),
             ),
             Padding(
@@ -175,7 +229,10 @@ class UserProgressPageView extends GetView<UserProgressPageController> {
                           Container(
                             margin: EdgeInsets.all(5),
                             child: Center(
-                              child: Text(order["minNumber"].toString() ?? ""),
+                              child: Text(homeBuilderController
+                                      .convertIdr(order["minNumber"])
+                                      .toString() ??
+                                  ""),
                             ),
                           ),
                           SizedBox(
@@ -194,7 +251,10 @@ class UserProgressPageView extends GetView<UserProgressPageController> {
                           Container(
                             margin: EdgeInsets.all(5),
                             child: Center(
-                              child: Text(order["maxNumber"].toString() ?? ""),
+                              child: Text(homeBuilderController
+                                      .convertIdr(order["maxNumber"])
+                                      .toString() ??
+                                  ""),
                             ),
                           ),
                         ],
@@ -218,27 +278,30 @@ class UserProgressPageView extends GetView<UserProgressPageController> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Bounceable(
                 onTap: () {
-                  progressPageController.launchWhatsAppUri(
-                      order["builderNumber"].toString().substring(1));
+                  progressPageController.launchWhatsAppUri("85186691109");
                 },
+                // order["builderNumber"].toString().substring(1)
                 child: Container(
                   width: double.infinity,
                   height: 60,
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
+                      padding: const EdgeInsets.only(left: 20),
                       child: Row(
                         children: <Widget>[
+                          SizedBox(
+                            width: 5,
+                          ),
                           Image.asset(
                             "assets/icon/wa.png",
-                            width: 40,
-                            height: 40,
+                            width: 30,
+                            height: 30,
                           ),
                           SizedBox(
                             width: 10,
                           ),
                           Text(
-                            "Hubungi Tukang",
+                            "Hubungi Admin",
                             style: TextStyle(
                                 color: Color(0XFF4ac45c),
                                 fontWeight: FontWeight.bold,

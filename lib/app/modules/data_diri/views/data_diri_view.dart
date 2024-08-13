@@ -234,12 +234,12 @@ class ProfileCard extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: Image.asset(
-                    "assets/image/patt.jpg",
+                    "assets/image/pprofile.png",
                     fit: BoxFit.cover,
                   ),
                 ),
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color(0XFFcccccc),
                     border: Border.all(color: Color(0XFFFFA800), width: 1),
                     borderRadius: BorderRadius.circular(100)),
               ),

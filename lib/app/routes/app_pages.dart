@@ -22,6 +22,8 @@ import '../modules/order/bindings/order_binding.dart';
 import '../modules/order/views/order_view.dart';
 import '../modules/order_builder/bindings/order_builder_binding.dart';
 import '../modules/order_builder/views/order_builder_view.dart';
+import '../modules/order_detail/bindings/order_detail_binding.dart';
+import '../modules/order_detail/views/order_detail_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/progress_page/bindings/progress_page_binding.dart';
@@ -95,22 +97,22 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CAT,
-      page: () => const CatView(),
+      page: () => CatView(),
       binding: CatBinding(),
     ),
     GetPage(
       name: _Paths.LISTRIK,
-      page: () => const ListrikView(),
+      page: () => ListrikView(),
       binding: ListrikBinding(),
     ),
     GetPage(
       name: _Paths.BANGUNAN,
-      page: () => const BangunanView(),
+      page: () => BangunanView(),
       binding: BangunanBinding(),
     ),
     GetPage(
       name: _Paths.KAYU,
-      page: () => const KayuView(),
+      page: () => KayuView(),
       binding: KayuBinding(),
     ),
     GetPage(
@@ -127,6 +129,11 @@ class AppPages {
       name: _Paths.ORDER_BUILDER,
       page: () => OrderBuilderView(),
       binding: OrderBuilderBinding(),
+    ),
+    GetPage(
+      name: _Paths.ORDER_DETAIL,
+      page: () => OrderDetailView(),
+      binding: OrderDetailBinding(),
     ),
   ];
 }

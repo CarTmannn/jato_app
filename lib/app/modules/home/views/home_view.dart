@@ -150,12 +150,17 @@ class HomeView extends GetView<HomeController> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Container(
-                                  width: 55,
-                                  height: 55,
-                                  child: Image.asset(
-                                    "assets/icon/Cat.png",
-                                    fit: BoxFit.contain,
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(Routes.CAT);
+                                  },
+                                  child: Container(
+                                    width: 55,
+                                    height: 55,
+                                    child: Image.asset(
+                                      "assets/icon/Cat.png",
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
                                 GestureDetector(
@@ -171,20 +176,30 @@ class HomeView extends GetView<HomeController> {
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  width: 55,
-                                  height: 55,
-                                  child: Image.asset(
-                                    "assets/icon/Listrik.png",
-                                    fit: BoxFit.contain,
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(Routes.LISTRIK);
+                                  },
+                                  child: Container(
+                                    width: 55,
+                                    height: 55,
+                                    child: Image.asset(
+                                      "assets/icon/Listrik.png",
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
-                                Container(
-                                  width: 55,
-                                  height: 55,
-                                  child: Image.asset(
-                                    "assets/icon/Bangunan.png",
-                                    fit: BoxFit.contain,
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(Routes.BANGUNAN);
+                                  },
+                                  child: Container(
+                                    width: 55,
+                                    height: 55,
+                                    child: Image.asset(
+                                      "assets/icon/Bangunan.png",
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -195,12 +210,17 @@ class HomeView extends GetView<HomeController> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Container(
-                                  width: 55,
-                                  height: 55,
-                                  child: Image.asset(
-                                    "assets/icon/Kayu.png",
-                                    fit: BoxFit.contain,
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(Routes.KAYU);
+                                  },
+                                  child: Container(
+                                    width: 55,
+                                    height: 55,
+                                    child: Image.asset(
+                                      "assets/icon/Kayu.png",
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
                                 Container(
@@ -268,10 +288,18 @@ class HomeView extends GetView<HomeController> {
                             SizedBox(
                               height: 10,
                             ),
-                            BuilderRecommendedBox(),
-                            BuilderRecommendedBox(),
-                            BuilderRecommendedBox(),
-                            BuilderRecommendedBox(),
+                            BuilderRecommendedBox(
+                              name: "Yanto Naska",
+                            ),
+                            BuilderRecommendedBox(
+                              name: "Ahmad Subair Salam",
+                            ),
+                            BuilderRecommendedBox(
+                              name: "Adi bahtiar",
+                            ),
+                            BuilderRecommendedBox(
+                              name: "Firmansyah",
+                            ),
                             SizedBox(
                               height: 80,
                             )
@@ -382,9 +410,9 @@ class HomeView extends GetView<HomeController> {
 }
 
 class BuilderRecommendedBox extends StatelessWidget {
-  const BuilderRecommendedBox({
-    super.key,
-  });
+  const BuilderRecommendedBox({super.key, required this.name});
+
+  final name;
 
   @override
   Widget build(BuildContext context) {
@@ -404,13 +432,13 @@ class BuilderRecommendedBox extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(25),
                 child: Image.asset(
-                  "assets/image/patt.jpg",
+                  "assets/image/pprofile.png",
                   fit: BoxFit.cover,
                 ),
               ),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25),
-                  color: Colors.white,
+                  color: Color(0XFFcccccc),
                   border: Border.all(color: Color(0XFFffA800), width: 2)),
             ),
             SizedBox(
@@ -421,7 +449,7 @@ class BuilderRecommendedBox extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "Yanto Naska",
+                  name,
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,

@@ -1,22 +1,37 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:jato/app/modules/order_builder/controllers/order_builder_controller.dart';
 import 'package:jato/app/modules/profile/controllers/profile_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OrderController extends GetxController {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  ProfileController profileController = ProfileController();
+  ProfileController profileController = Get.put(ProfileController());
   var orders = <Map<String, dynamic>>[].obs;
-
-  Future<String> getNamaLengkapFromPrefs() async {
+  var waitingOrders = <Map<String, dynamic>>[].obs;
+  final isOn = true.obs;
+  Future<String> getEmailFromPrefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('nama_lengkap') ?? '';
   }
 
-  Future<void> fetchProgressOrders(String name) async {
+  Future<void> fetchWaitingOrders(String email) async {
     firebaseFirestore
         .collection('order')
-        .where("customerName", isEqualTo: name)
+        .where("customerName", isEqualTo: email)
+        .where("builderName", isEqualTo: "")
+        .snapshots()
+        .listen((snapshot) {
+      waitingOrders.value = snapshot.docs.map((doc) {
+        return doc.data() as Map<String, dynamic>;
+      }).toList();
+    });
+  }
+
+  Future<void> fetchProgressOrders(String email) async {
+    firebaseFirestore
+        .collection('order')
+        .where("customerName", isEqualTo: email)
         .where("builderName", isNotEqualTo: "")
         .snapshots()
         .listen((snapshot) {
@@ -32,9 +47,9 @@ class OrderController extends GetxController {
   void onInit() {
     super.onInit();
     print("OrderController initialized");
-    getNamaLengkapFromPrefs().then((namaLengkap) {
-      print("User name from SharedPreferences: $namaLengkap");
-      fetchProgressOrders(namaLengkap);
+    getEmailFromPrefs().then((email) {
+      fetchProgressOrders(email);
+      fetchWaitingOrders(email);
     });
   }
 
