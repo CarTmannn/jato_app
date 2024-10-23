@@ -1,7 +1,11 @@
+import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jato/app/routes/app_pages.dart';
 import 'package:jato/app/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class ProfileController extends GetxController {
   var user = User(
@@ -32,6 +36,33 @@ class ProfileController extends GetxController {
   void onInit() {
     super.onInit();
     loadUserProfile();
+  }
+
+  Future<void> deleteAccount(String email) async {
+    CollectionReference orders = FirebaseFirestore.instance.collection('order');
+
+    var response = await http.post(
+        Uri.parse("https://seahorse-app-jep59.ondigitalocean.app/delete"),
+        body: jsonEncode({"email": email}));
+
+    if (response.statusCode == 200) {
+      try {
+        QuerySnapshot snapshot =
+            await orders.where('userEmail', isEqualTo: user.value.email).get();
+
+        for (var doc in snapshot.docs) {
+          await doc.reference.delete();
+        }
+      } catch (e) {
+        print("Error saat menghapus order: $e");
+      }
+      Get.offAllNamed(Routes.LOGIN);
+      Get.snackbar("Berhasil menghapus akun",
+          "akun yang sudah dihapus tidak bisa digunakan lagi",
+          colorText: Colors.black,
+          backgroundColor: Colors.green,
+          duration: Duration(seconds: 3));
+    }
   }
 
   Future<void> loadUserProfile() async {

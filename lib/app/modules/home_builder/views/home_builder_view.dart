@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
-
 import 'package:get/get.dart';
 import 'package:jato/app/modules/profile/controllers/profile_controller.dart';
 import 'package:jato/app/routes/app_pages.dart';
@@ -116,7 +115,7 @@ class HomeBuilderView extends GetView<HomeBuilderController> {
                           ),
                           Container(
                               width: double.infinity,
-                              height: 450,
+                              height: MediaQuery.of(context).size.height * 1,
                               child: OfferBox()),
                           SizedBox(
                             height: 100,

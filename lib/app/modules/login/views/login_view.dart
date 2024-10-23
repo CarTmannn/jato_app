@@ -202,7 +202,9 @@ class LoginView extends GetView<LoginController> {
                     ],
                   ),
                   Bounceable(
-                    onTap: () => null,
+                    onTap: () => Get.snackbar(
+                        "Oopss..", "Belum tersedia untuk saat ini",
+                        backgroundColor: Colors.yellow),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: 45,

@@ -39,6 +39,7 @@ void main() async {
       title: "Application",
       initialRoute: initialRoute,
       getPages: AppPages.routes,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.amber,

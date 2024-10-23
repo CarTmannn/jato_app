@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 
 import 'package:get/get.dart';
 import 'package:jato/app/modules/home/controllers/home_controller.dart';
@@ -71,10 +72,106 @@ class ProfileView extends GetView<ProfileController> {
                   text: "Atur Pin",
                   color: Colors.black,
                 ),
-                SettingButton(
-                  icon: "assets/icon/Hapus.png",
-                  text: "Hapus Akun",
-                  color: Colors.black,
+                Bounceable(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Dialog(
+                            child: Container(
+                              height: 120,
+                              width: 200,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      "Apakah anda yakin ingin mengahapus akun?",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Center(
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Bounceable(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Container(
+                                            height: 30,
+                                            width: 45,
+                                            child: Center(
+                                              child: Text(
+                                                "No",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: Colors.black,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Bounceable(
+                                          onTap: () {
+                                            controller.deleteAccount(
+                                                controller.user.value.email!);
+                                          },
+                                          child: Container(
+                                            height: 30,
+                                            width: 45,
+                                            child: Center(
+                                              child: Text(
+                                                "Yes",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: Colors.black,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.amber,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          );
+                        });
+                  },
+                  child: SettingButton(
+                    icon: "assets/icon/Hapus.png",
+                    text: "Hapus Akun",
+                    color: Colors.black,
+                  ),
                 ),
                 SizedBox(
                   height: 10,

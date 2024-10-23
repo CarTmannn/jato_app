@@ -20,7 +20,15 @@ class HomeController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  final List fotoRumah = ["catrumah.jpg", "house1.jpg", "house2.jpg"];
+  final List rating = ["4.9", "4.5", "5.0"];
+  final List jarak = ["1.2", "7", "3.5"];
+  final List owner = [
+    "Edy",
+    "Rehan",
+    "farhan",
+  ];
+  final List tukang = ["Yanto Naska", "Firmansyah", "Adi Bahtiar"];
 
   var selected_index = 0.obs;
 

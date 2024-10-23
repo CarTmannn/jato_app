@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 
 import 'package:get/get.dart';
 import 'package:jato/app/modules/profile/controllers/profile_controller.dart';
@@ -15,6 +16,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: <Widget>[
@@ -125,7 +127,7 @@ class HomeView extends GetView<HomeController> {
                                   width: double.infinity,
                                   height: 130,
                                   child: Image.asset(
-                                    "assets/image/1.png",
+                                    "assets/image/banner.jpg",
                                     fit: BoxFit.cover,
                                   ),
                                   decoration: BoxDecoration(
@@ -150,107 +152,209 @@ class HomeView extends GetView<HomeController> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.toNamed(Routes.CAT);
-                                  },
-                                  child: Container(
-                                    width: 55,
-                                    height: 55,
-                                    child: Image.asset(
-                                      "assets/icon/Cat.png",
-                                      fit: BoxFit.contain,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Bounceable(
+                                      onTap: () {
+                                        Get.toNamed(Routes.CAT);
+                                      },
+                                      child: Container(
+                                        width: 35,
+                                        height: 35,
+                                        child: Image.asset(
+                                          "assets/icon/Cat.png",
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      "Cat",
+                                      style: TextStyle(
+                                          color: Color(0XFFFFA800),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Bounceable(
+                                      onTap: () {
+                                        Get.toNamed(Routes.KAYU);
+                                      },
+                                      child: Container(
+                                        width: 30,
+                                        height: 30,
+                                        child: Image.asset(
+                                          "assets/icon/Kayu.png",
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      "kayu",
+                                      style: TextStyle(
+                                          color: Color(0XFFFFA800),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
+                                  ],
                                 ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.toNamed(Routes.TEGEL);
-                                  },
-                                  child: Container(
-                                    width: 55,
-                                    height: 55,
-                                    child: Image.asset(
-                                      "assets/icon/Tegel.png",
-                                      fit: BoxFit.contain,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Bounceable(
+                                      onTap: () {
+                                        Get.toNamed(Routes.TEGEL);
+                                      },
+                                      child: Container(
+                                        width: 35,
+                                        height: 35,
+                                        child: Image.asset(
+                                          "assets/icon/Tegel.png",
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      "Tegel",
+                                      style: TextStyle(
+                                          color: Color(0XFFFFA800),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      width: 30,
+                                      height: 30,
+                                      child: Image.asset(
+                                        "assets/icon/Coming.png",
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      "Coming Soon",
+                                      style: TextStyle(
+                                          color: Color(0XFFFFA800),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12),
+                                    ),
+                                  ],
                                 ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.toNamed(Routes.LISTRIK);
-                                  },
-                                  child: Container(
-                                    width: 55,
-                                    height: 55,
-                                    child: Image.asset(
-                                      "assets/icon/Listrik.png",
-                                      fit: BoxFit.contain,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Bounceable(
+                                      onTap: () => Get.toNamed(Routes.LISTRIK),
+                                      child: Container(
+                                        width: 35,
+                                        height: 35,
+                                        child: Image.asset(
+                                          "assets/icon/Listrik.png",
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      "Listrik",
+                                      style: TextStyle(
+                                          color: Color(0XFFFFA800),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      width: 30,
+                                      height: 30,
+                                      child: Image.asset(
+                                        "assets/icon/Coming.png",
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      "Coming Soon",
+                                      style: TextStyle(
+                                          color: Color(0XFFFFA800),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12),
+                                    ),
+                                  ],
                                 ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.toNamed(Routes.BANGUNAN);
-                                  },
-                                  child: Container(
-                                    width: 55,
-                                    height: 55,
-                                    child: Image.asset(
-                                      "assets/icon/Bangunan.png",
-                                      fit: BoxFit.contain,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Bounceable(
+                                      onTap: () {
+                                        Get.toNamed(Routes.BANGUNAN);
+                                      },
+                                      child: Container(
+                                        width: 35,
+                                        height: 35,
+                                        child: Image.asset(
+                                          "assets/icon/Bangunan.png",
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      "Bangunan",
+                                      style: TextStyle(
+                                          color: Color(0XFFFFA800),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      width: 30,
+                                      height: 30,
+                                      child: Image.asset(
+                                        "assets/icon/Lainnya.png",
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "Lainnya",
+                                      style: TextStyle(
+                                          color: Color(0XFFFFA800),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
                             SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.toNamed(Routes.KAYU);
-                                  },
-                                  child: Container(
-                                    width: 55,
-                                    height: 55,
-                                    child: Image.asset(
-                                      "assets/icon/Kayu.png",
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 55,
-                                  height: 55,
-                                  child: Image.asset(
-                                    "assets/icon/Coming Soon.png",
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                                Container(
-                                  width: 55,
-                                  height: 55,
-                                  child: Image.asset(
-                                    "assets/icon/Coming Soon.png",
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                                Container(
-                                  width: 55,
-                                  height: 55,
-                                  child: Image.asset(
-                                    "assets/icon/Lainnya.png",
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
+                              height: 15,
                             ),
                             Text(
                               "Hasil Proyek",
@@ -262,9 +366,32 @@ class HomeView extends GetView<HomeController> {
                             SizedBox(
                               height: 15,
                             ),
-                            ProjectResultBox(),
+                            Container(
+                                height: 140,
+                                width: MediaQuery.of(context).size.width * 1,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount:
+                                              controller.fotoRumah.length,
+                                          itemBuilder: (context, index) =>
+                                              ProjectResultBox(
+                                                foto:
+                                                    controller.fotoRumah[index],
+                                                jarak: controller.jarak[index],
+                                                rating:
+                                                    controller.rating[index],
+                                                tukang:
+                                                    controller.tukang[index],
+                                                owner: controller.owner[index],
+                                              )),
+                                    ),
+                                  ],
+                                )),
                             SizedBox(
-                              height: 20,
+                              height: 15,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -482,90 +609,108 @@ class BuilderRecommendedBox extends StatelessWidget {
 
 class ProjectResultBox extends StatelessWidget {
   const ProjectResultBox({
+    required this.foto,
+    required this.jarak,
+    required this.rating,
+    required this.tukang,
+    required this.owner,
     super.key,
   });
 
+  final foto;
+  final jarak;
+  final rating;
+  final tukang;
+  final owner;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 120,
-      height: 140,
-      //color: Colors.green,
-      child: Column(
-        children: <Widget>[
-          Container(
-            width: 120,
-            height: 86,
-            child: Image.asset(
-              "assets/image/rumah.png",
-              fit: BoxFit.cover,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+    return Row(
+      children: [
+        Container(
+          width: 120,
+          height: 140,
+          //color: Colors.green,
+          child: Column(
             children: <Widget>[
-              Text(
-                "1.2",
-                style: TextStyle(
+              Container(
+                width: 120,
+                height: 86,
+                child: Image.asset(
+                  "assets/image/${foto}",
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    jarak,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    width: 3,
+                  ),
+                  Text(
+                    "km  -",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    width: 3,
+                  ),
+                  Icon(
+                    Icons.star,
+                    color: Color(0XFF0b487d),
+                    size: 15,
+                  ),
+                  SizedBox(
+                    width: 3,
+                  ),
+                  Text(
+                    rating,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                ],
+              ),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  "Rumah ${owner}",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  "by: ${tukang}",
+                  style: TextStyle(
                     color: Colors.black,
                     fontSize: 10,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                width: 3,
-              ),
-              Text(
-                "km  -",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                width: 3,
-              ),
-              Icon(
-                Icons.star,
-                color: Color(0XFF0b487d),
-                size: 15,
-              ),
-              SizedBox(
-                width: 3,
-              ),
-              Text(
-                "49",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 5,
-              ),
+                  ),
+                ),
+              )
             ],
           ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              "Rumah Pak edy",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              "by: Andika Pratama",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 10,
-              ),
-            ),
-          )
-        ],
-      ),
+        ),
+        SizedBox(
+          width: 10,
+        )
+      ],
     );
   }
 }
